@@ -15,6 +15,13 @@ function add(numbers) {
 
   // Split the string by commas and add the numbers
   const numArray = numbers.split(/[\n,]+/);
+
+  // Check for negative numbers
+  const negatives = numArray.filter(num => parseInt(num, 10) < 0);
+  if (negatives.length > 0) {
+    throw new Error(`negative numbers not allowed: ${negatives.join(', ')}`);
+  }
+
   return numArray.reduce((sum, num) => sum + parseInt(num, 10), 0);
 }
 
